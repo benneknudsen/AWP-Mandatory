@@ -24,6 +24,13 @@ nav ul li {
     display: inline;
     padding: 10px;
     font-size: 20px;
+    text-align: center;
+}
+
+ul {
+    text-align: center;
+    list-style-type: none;
+    font-size: 15px;
 }
 
 h1 {
@@ -31,8 +38,16 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    padding: 260px;
+    text-align: center;
+}
+
+
+
 p,  h2, h3, h4, h5, h6 {
     padding: 10px;
+    text-align: center;
 }
 
 input {
@@ -60,9 +75,14 @@ a:hover {
 
 .comment {
     background-color: white;
+    border: 1px;
+    border-radius: 5px;
     padding: 10px;
     margin: 10px;
     width: 600px;
+    color: black;
+    display: block;
+    margin: 0 auto;
 }
 
 .btn {
@@ -73,4 +93,8 @@ a:hover {
 
 .votes {
     float: right;
+}
+
+.votes .btn {
+    width: 30px;
 }

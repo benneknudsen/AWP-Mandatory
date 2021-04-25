@@ -29,20 +29,20 @@ class PostAnswer extends Component {
             })
         })
         const data = await response.json();
-        console.log("Here's the response: ", data)
+        console.log("Response ", data)
     }
 
     render() {
         return (
             <>
-                <h3>Comments</h3>
+                
                 <input autoComplete="off" name="answer" onChange={event => this.onChange(event)} type="text"/>
-                <button onClick={_ => this.onSubmit()}>Submit Answer</button>
+                <button onClick={_ => this.onSubmit()}>Answer the Question</button>
+                <h3>Comments</h3>
             </>
         );
     }
 }
 
 export default PostAnswer;
-
 

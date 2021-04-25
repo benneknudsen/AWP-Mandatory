@@ -18,8 +18,6 @@ class Question extends Component {
         });
     }
 
-
-
     async updateVote(id, vote){
         let response = await fetch(`${this.API_URL}/vote`, {
         headers: {
@@ -33,7 +31,7 @@ class Question extends Component {
             })
         })
         const data = await response.json();
-        console.log("Response tiiimmmeee ", data)
+        console.log("Response ", data)
     }
     
     render() {
@@ -44,8 +42,8 @@ class Question extends Component {
         const displayAnswers = answers.map(answer => 
         <div className="comment">{answer.text}
             <span className="votes">Votes: {answer.votes}</span>
-            <button onClick={() => { this.updateVote(answer._id, "up") }} className="btn">Upvote</button>
-            <button onClick={() => { this.updateVote(answer._id, "down") }} className="btn">Downvote</button>
+            <button onClick={() => { this.updateVote(answer._id, "up") }} className="btn">Like</button>
+            <button onClick={() => { this.updateVote(answer._id, "down") }} className="btn">Dislike</button>
         </div>)
         
         return (

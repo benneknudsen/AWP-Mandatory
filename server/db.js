@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 try {
-    const url =  process.env.MONGODB_URL || 'mongodb://localhost/my_database';
+    const url =  process.env.MONGODB_URL || 'mongodb://localhost/my-database';
     mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 } catch (e) {
     console.error(e)

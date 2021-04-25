@@ -15,7 +15,7 @@ class AskQuestion extends Component {
             [event.target.name]: event.target.value
         })
     }
- 
+
     async onSubmit() {
         // this.props.submit(this.state.answer, this.state.id);
         let response = await fetch(`${this.API_URL}/askquestion`, {
@@ -30,14 +30,14 @@ class AskQuestion extends Component {
             })
         })
         const data = await response.json();
-        console.log("Here's the response: ", data)
+        console.log("Response Here ", data)
     }
 
     render() {
         return (
             <>
-                <input placeholder="Title of question" name="title" onChange={event => this.onChange(event)} type="text"/>
-                <input placeholder="What is your question?" name="desc" onChange={event => this.onChange(event)} type="text"/>
+                <input placeholder="Write a title here" name="title" onChange={event => this.onChange(event)} type="text"/>
+                <input placeholder="Write your question here" name="desc" onChange={event => this.onChange(event)} type="text"/>
                 <button onClick={_ => this.onSubmit()}>Submit Question</button>
             </>
         )

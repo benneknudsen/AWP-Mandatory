@@ -11,7 +11,7 @@ class Questions extends Component {
 
         return (
             <>
-                <h3>Questions</h3>
+                <h3>Overview of all questions</h3>
                 <ul>
                     {list}
                 </ul>

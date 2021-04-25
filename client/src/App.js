@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        this.getQuestions().then(() => console.log("It Works!"));
+        this.getQuestions().then(() => console.log("Questions are working"));
     }
 
     async getQuestions(){
@@ -26,6 +26,18 @@ class App extends Component {
         return this.setState({
             questions: data
         })
+    }
+
+
+    getQuestion(id) {
+        const findFunction = questions => questions._id === id; 
+        return this.state.questions.find(findFunction)
+    }
+
+    submitAnswer(answer, id){
+        let state = this.state.questions
+        let element = state.find(x=>x.id === id)
+        element.comments.unshift(answer);
     }
 
     submit(title, desc, votes, comments) {
@@ -42,16 +54,6 @@ class App extends Component {
         })
     }
 
-    getQuestion(id) {
-        const findFunction = questions => questions._id === id; 
-        return this.state.questions.find(findFunction)
-    }
-
-    submitAnswer(answer, id){
-        let state = this.state.questions
-        let element = state.find(x=>x.id === id)
-        element.comments.unshift(answer);
-    }
 
     vote(questionID, answerID, isUpvote) {
         let stateCopy = this.state.questions;
@@ -70,21 +72,33 @@ class App extends Component {
             });
     }
 
-
+    async voting(answer, questionID) {
+        const response = await fetch(`${this.API_URL}/questions/${questionID}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                text: answer
+            })
+        });
+        const data = await response.json();
+        console.log("response:", data);
+    }
 
     render() {
         return (
             <>
             <nav>
                 <ul>
-                    <Link to="/"><li key="home">Homepage</li></Link>
-                    <Link to="/"><li key ="questions">Overview</li></Link>
-                    <Link to="/ask"><li key="ask">Ask A Question</li></Link>
+                    <Link to="/"><li key="home">Home</li></Link>
+                    <Link to="/"><li key ="questions">Questions</li></Link>
+                    <Link to="/ask"><li key="ask">Ask a question</li></Link>
                 </ul>
             </nav>
             <h1>Welcome to BenneOverflow</h1>
                 <Router>
-                  <AskQuestion path="/ask" submit={(title, desc, votes, comments) => this.submit(title, desc, votes, comments)}></AskQuestion>
+                  <AskQuestion path="/ask" submit={(title, desc, vote, comments) => this.submit(title, desc, vote, comments)}></AskQuestion>
                   <Question path="/question/:id" getQuestion={(id) => this.getQuestion(id)} submitAnswer={(answer, id) => this.submitAnswer(answer, id)}></Question>
                   <Questions path="/" data={this.state.questions}></Questions>
                 </Router>

@@ -1,18 +1,21 @@
 {
   "name": "benneoverflow",
   "version": "1.0.0",
-  "main": "App.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.9.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.9.1"
   },
+  "description": "",
   "engines": {
     "node": "10.15.3",
     "npm": "6.9.0"
