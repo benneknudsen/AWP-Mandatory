@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 try {
-    const url =  process.env.MONGODB_URL || 'mongodb://localhost/database_overflow';
+    const url =  process.env.MONGODB_URL || 'mongodb://localhost/my_database';
     mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
 } catch (e) {
     console.error(e)
 }
 
-
+// Schema for Mongoose
 const questionSchema = new mongoose.Schema({
         text: String,
         desc: String,
@@ -17,18 +17,21 @@ const questionSchema = new mongoose.Schema({
         }]
     });
 
-
+// Model for Mongoose
 const Question = mongoose.model('Question', questionSchema);
 
-
+// Allow use of findByIdAndUpdate
 mongoose.set('useFindAndModify', false); 
 
-
+// Add a new question to the db
 async function addQuestion(title, desc) {
+    // Template for a new question
     const quest = new Question({
         text: title,
         desc: desc
     });
+    
+    // Save to the db
     try {
         let savedQ = await quest.save();
         console.log("Questions saved.", savedQ);
@@ -37,14 +40,16 @@ async function addQuestion(title, desc) {
     }
 };
 
+// Add a new answer to already existing question
 async function addAnswer(id, answer) {
 
+    // New object to push to Mongoose document
     const newAnswer = {
             votes: 0,
             text: answer,      
     };
 
-  
+    // Update the item from id
     let answers = mongoose.model('Question')
     await answers.findByIdAndUpdate(
         { _id: id },
@@ -53,6 +58,7 @@ async function addAnswer(id, answer) {
     return newAnswer
 }
 
+// Get all the questions in the db
 async function getQuestions(){
     const questions = mongoose.model('Question').find(function(err, questions){
         return questions

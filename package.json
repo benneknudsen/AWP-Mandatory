@@ -1,5 +1,5 @@
 {
-  "name": "BenneOverflow",
+  "name": "benneoverflow",
   "version": "1.0.0",
   "scripts": {
     "start": "cd server && node app.js",

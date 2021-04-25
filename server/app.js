@@ -1,29 +1,30 @@
-const express = require('express');
+/**** External libraries ****/
+const express = require('express'); // The express.js library for implementing the API
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const db = require('./db');
 const path = require('path');
 
-
-const appName = "BenneOverflow"; 
+/**** Configuration ****/
+const appName = "Express API Template"; // Change the name of your server app!
 const port = process.env.PORT || 8085; // Pick port 8080 if the PORT env variable is empty.
 const app = express(); // Get the express app object.
 
-app.use(bodyParser.json()); 
-app.use(morgan('combined')); 
-app.use(cors()); 
+app.use(bodyParser.json()); // Add middleware that parses JSON from the request body.
+app.use(morgan('combined')); // Add middleware that logs all http requests to the console.
+app.use(cors()); // Avoid CORS errors. https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 app.use(express.static('../client/build'));
 
 app.get('/api/questions', (req, res) => {
     // get all the questions
-    async function overview(){
+    async function allQuestions(){
         const questions = await db.getQuestions()    
         res.json(questions)
     }
 
     // run the function
-    overview()
+    allQuestions()
 });
 
 app.put('/api/askquestion', (req, res) => {
