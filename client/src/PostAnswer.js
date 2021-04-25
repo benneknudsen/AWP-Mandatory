@@ -5,7 +5,6 @@ class PostAnswer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            answer: ""
         }
     }
 
@@ -16,8 +15,21 @@ class PostAnswer extends Component {
         })
     }
 
-    onSubmit() {
-        this.props.submit(this.state.answer);
+    async onSubmit() {
+        // this.props.submit(this.state.answer, this.state.id);
+        let response = await fetch(`${this.API_URL}/questions/${this.state.id}`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },    
+        method: 'PUT',
+            mode: 'cors',
+            body: JSON.stringify({
+                id: this.state.id,
+                answer: this.state.answer
+            })
+        })
+        const data = await response.json();
+        console.log("Here's the response: ", data)
     }
 
     render() {
@@ -25,11 +37,12 @@ class PostAnswer extends Component {
             <>
                 <h3>Comments</h3>
                 <input autoComplete="off" name="answer" onChange={event => this.onChange(event)} type="text"/>
-                <button onClick={_ => this.onSubmit()}>Answer the question</button>
+                <button onClick={_ => this.onSubmit()}>Submit Answer</button>
             </>
         );
     }
 }
 
 export default PostAnswer;
+
 

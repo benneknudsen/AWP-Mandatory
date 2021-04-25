@@ -10,20 +10,20 @@ const appName = "BenneOverflow";
 const port = process.env.PORT || 8085; // Pick port 8080 if the PORT env variable is empty.
 const app = express(); // Get the express app object.
 
-app.use(bodyParser.json()); // Add middleware that parses JSON from the request body.
-app.use(morgan('combined')); // Add middleware that logs all http requests to the console.
-app.use(cors()); // Avoid CORS errors. https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+app.use(bodyParser.json()); 
+app.use(morgan('combined')); 
+app.use(cors()); 
 app.use(express.static('../client/build'));
 
 app.get('/api/questions', (req, res) => {
     // get all the questions
-    async function allQuestions(){
+    async function overview(){
         const questions = await db.getQuestions()    
         res.json(questions)
     }
 
     // run the function
-    allQuestions()
+    overview()
 });
 
 app.put('/api/askquestion', (req, res) => {

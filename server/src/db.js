@@ -78,5 +78,5 @@ module.exports = {
     addQuestion: addQuestion,
     addAnswer: addAnswer,
     getQuestions: getQuestions,
-    votes: votes
+    vote: vote
 }

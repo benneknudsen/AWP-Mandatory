@@ -18,10 +18,7 @@ class Question extends Component {
         });
     }
 
-    vote(answerID, isUpvote) {
-        this.props.vote(this.props.id, answerID, isUpvote);
 
-    }
 
     async updateVote(id, vote){
         let response = await fetch(`${this.API_URL}/vote`, {
@@ -36,7 +33,7 @@ class Question extends Component {
             })
         })
         const data = await response.json();
-        console.log("Here's the response: ", data)
+        console.log("Response tiiimmmeee ", data)
     }
     
     render() {

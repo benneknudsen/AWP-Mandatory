@@ -2,9 +2,9 @@
   "name": "BenneOverflow",
   "version": "1.0.0",
   "scripts": {
-    "start": "cd server && npm start",
-    "react-dev": "cd client && npm start",
-    "test": "cd server && npm test",
+    "start": "cd server && node app.js",
+    "dev": "cd client && npm start",
+    "test": "cd client && npm test",
     "preinstall": "cd server && npm install",
     "install": "cd client && npm install",
     "build": "cd client && npm run build"
