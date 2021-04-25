@@ -1,15 +1,19 @@
 {
-  "name": "node-api-server",
+  "name": "BenneOverflow",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node ./App.js"
   },
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongoose": "^5.9.6",
     "morgan": "^1.10.0"
   },
-  "description": ""
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
+  }
 }

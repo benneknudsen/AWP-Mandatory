@@ -1,5 +1,5 @@
 {
-  "name": "mern-app",
+  "name": "BenneOverflow",
   "version": "1.0.0",
   "scripts": {
     "start": "cd server && npm start",
