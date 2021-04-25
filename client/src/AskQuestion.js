@@ -15,8 +15,22 @@ class AskQuestion extends Component {
             [event.target.name]: event.target.value
         })
     }
-    onSubmit() {
-        this.props.submit(this.state.title, this.state.desc);
+ 
+    async onSubmit() {
+        // this.props.submit(this.state.answer, this.state.id);
+        let response = await fetch(`${this.API_URL}/askquestion`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },    
+        method: 'PUT',
+            mode: 'cors',
+            body: JSON.stringify({
+                title: this.state.title,
+                desc: this.state.desc
+            })
+        })
+        const data = await response.json();
+        console.log("Here's the response: ", data)
     }
 
     render() {
